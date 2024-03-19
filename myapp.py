@@ -7,7 +7,7 @@ def load_student_data():
 
 # Function to load water drinking data
 def load_water_data():
-    water_data = pd.read_csv("D:\\Documents\\GDSC23\\code\\face_recognition_mtcnn\\MiAI_FaceRecog_3\\output.csv")
+    water_data = pd.read_csv("output.csv")
     water_data['Time'] = pd.to_datetime(water_data['Time'])  # Convert 'Time' column to datetime
     water_data['Time'] = water_data['Time'].dt.strftime('%m/%d/%Y %H:%M')  # Format 'Time' to remove seconds
     return water_data.groupby(['Time', 'StudentID']).agg({'IsDrinkingWater': 'first'}).reset_index()
