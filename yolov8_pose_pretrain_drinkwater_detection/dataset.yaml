@@ -1,0 +1,9 @@
+path: D:/Documents/GDSC23/code/drink_water_detection/data  # dataset root dir
+train: images/train # train images (relative to 'path')
+val: images/val # val images (relative to 'path')
+
+kpt_shape: [7, 2]  # number of keypoints, number of dims (2 for x,y or 3 for x,y,visible)
+flip_idx: [0,1,2,4,3,5,6]
+# Classes
+names:
+  0: drink_water
