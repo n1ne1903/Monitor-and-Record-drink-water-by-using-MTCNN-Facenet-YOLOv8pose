@@ -130,7 +130,7 @@ def main():
                                     # Set yolo_ready to True if face recognition and verification is successful
                                     yolo_ready = True
                                     drink_detected = False
-                                    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                                    timestamp = datetime.now().strftime("%m/%d/%Y %H:%M")
 
                                     for result in yolo_results:
                                         if len(result.keypoints.xy.cpu()[0]) != 0:  # Adjust class name as needed
