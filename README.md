@@ -40,3 +40,49 @@ __The mentioned points help you understand the importance of drinking water, and
 * This is __Streamlit__ and you can see it record students "Lê Bảo Lâm" drink water 2 times today
 
 ## How to use this system?
+### Clone this git:
+```python
+git clone https://github.com/n1ne1903/Monitor-and-Record-drink-water-by-using-MTCNN-Facenet-YOLOv8pose.git
+```
+### Install requirement library:
+```python
+pip install -r requirements.txt
+```
+### Update information of student in student_in4.csv and clear output.csv:
+![image](https://github.com/n1ne1903/Monitor-and-Record-drink-water-by-using-MTCNN-Facenet-YOLOv8pose/assets/141629048/6468f467-c290-495f-a6bf-c91275e302fb)
+### Upload images of student's face and download pre-train model Facenet
+* Step1: Create 2 new folder (FaceData and PretrainModelsFaceRecognition) in folder Face_recognition like below:
+![image](https://github.com/n1ne1903/Monitor-and-Record-drink-water-by-using-MTCNN-Facenet-YOLOv8pose/assets/141629048/769a9afe-1edb-42e7-8c80-7ca7db07eb80)
+* Step2: Create 2 more new folder (raw and processed) in folder FaceData:
+![image](https://github.com/n1ne1903/Monitor-and-Record-drink-water-by-using-MTCNN-Facenet-YOLOv8pose/assets/141629048/e1c4e9a3-1e20-4ea4-a5d5-3377f5ca050a)
+* Step3: In folder raw, for each students create a new folder has name is ID of this studet and copy at least 3 images of this student to this
+* Step4: Preprocess data to crop faces from original images
+```python
+  python src/align_dataset_mtcnn.py  FaceData/raw Dataset/FaceData/processed --image_size 160 --margin 32  --random_order --gpu_memory_fraction 0.25
+```
+After preprocessing your tree of folder FaceDate look like that:
+```
+|-FaceData
+   |---processed
+   |-----Student1
+   |-----Student2
+   |---raw
+   |-----Studet1
+   |-----Student2
+```
+* Step5: Download weights pretrain Facenet [here](https://miai.vn/download.php?url=https://drive.google.com/file/d/1EXPBSXwTaqrSC0OhUdXNmKSh9qJUQ55-/view)
+* Step6: Unzip pretrain and copy all file paste to foler PretrainModelsFaceRecognition
+* Step7: Train model face recognition:
+```python
+python src/classifier.py TRAIN Dataset/FaceData/processed Models/20180402-114759.pb Models/facemodel.pkl --batch_size 1000
+```
+### Now open file main.py, change path and run to record your activity drink water
+```python
+python main.py
+```
+### Last open myapp.py, change username, password add more account to log in into your wweb 
+* Run streamlit app:
+```python
+streamlit run myapp.py
+```
+
